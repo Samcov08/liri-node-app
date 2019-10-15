@@ -15,6 +15,7 @@ var userInput = process.argv[3];
 // console.log(process.argv);
 
 
+runLiri();
 
 function runLiri() {
     switch (userCommands) {
@@ -22,6 +23,7 @@ function runLiri() {
             showConcertInfo();
             break;
         case "spotify-this-song":
+
             showSongInfo();
             break;
         case "movie-this":
@@ -34,7 +36,7 @@ function runLiri() {
             console.log("Invalid-Try again!")
     }
 }
-
+// ------------------------------------------------------------------
 //working code for concert
 function showConcertInfo() {
     // console.log("concert");
@@ -55,7 +57,7 @@ function showConcertInfo() {
 
 }
 
-
+// ------------------------------------------------------------------
 // working code for movie 
 function showMovieInfo() {
     if (userInput === undefined) {
@@ -78,20 +80,33 @@ function showMovieInfo() {
 
     });
 };
-runLiri();
+
 // -----------------------------------------------------------------
-// code for spotify 
-// function showSongInfo() {
-//     spotify.search({ type: 'track', query: userInput }, function(err, data) {
-//         if (err) {
-//             return console.log('Error occurred: ' + err);
-//         }
-//         console.log("song");
-//     })
-// }
+// working ode for spotify 
+function showSongInfo() {
+    var space = "\n\n"
+    spotify.search({ type: 'track', query: userInput }, function(err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        output =
+            "================= LIRI FOUND THIS FOR YOU...==================" +
+            space + "Song Name: " + "'" + data.tracks.items[0].name.toUpperCase() + "'" +
+            space + "Album Name: " + data.tracks.items[0].album.name +
+            space + "Artist Name: " + data.tracks.items[0].album.artists[0].name +
+            space + "URL: " + data.tracks.items[0].album.external_urls.spotify;
+        console.log(output);
+
+
+    })
+
+};
+
+
+
 // ------------------------------------------------------------------
 
-// working code for do what it says 
+// // working code for do what it says 
 function doIt() {
     console.log("Do it");
     fs.readFile("random.txt", "utf8", function(err, data) {
@@ -102,5 +117,3 @@ function doIt() {
     })
 
 }
-
-runLiri();
