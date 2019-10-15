@@ -1,0 +1,4 @@
+# add anything  that you dont want to push to gitHub
+node_modules
+.DS_Store
+.env
