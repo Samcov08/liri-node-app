@@ -35,28 +35,28 @@ function runLiri() {
     }
 }
 
-//working code
-// function showConcertInfo() {
-//     // console.log("concert");
-//     var inpoint = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
-//     axios.get(inpoint).then(function(data) {
-//         var bandData = data.data;
-//         // console.log(bandData);
-//         for (var i = 0; i < 5; i++) {
-//             var concert = bandData[i];
-//             var venue = concert.venue.name;
-//             var city = concert.venue.city;
-//             var country = concert.venue.country;
-//             var date = moment(concert.datetime).format("MM/DD/YYYY");
-//             console.log(venue, city, country, date);
+//working code for concert
+function showConcertInfo() {
+    // console.log("concert");
+    var inpoint = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
+    axios.get(inpoint).then(function(data) {
+        var bandData = data.data;
+        // console.log(bandData);
+        for (var i = 0; i < 5; i++) {
+            var concert = bandData[i];
+            var venue = concert.venue.name;
+            var city = concert.venue.city;
+            var country = concert.venue.country;
+            var date = moment(concert.datetime).format("MM/DD/YYYY");
+            console.log(venue, city, country, date);
 
-//         }
-//     })
+        }
+    })
 
-// }
+}
 
 
-// working code
+// working code for movie 
 function showMovieInfo() {
     if (userInput === undefined) {
         userInput = "Mr. Nobody"
@@ -79,7 +79,8 @@ function showMovieInfo() {
     });
 };
 runLiri();
-
+// -----------------------------------------------------------------
+// code for spotify 
 // function showSongInfo() {
 //     spotify.search({ type: 'track', query: userInput }, function(err, data) {
 //         if (err) {
@@ -88,16 +89,18 @@ runLiri();
 //         console.log("song");
 //     })
 // }
-// working code
-// function doIt() {
-//     console.log("Do it");
-//     fs.readFile("random.txt", "utf8", function(err, data) {
-//         var newCommand = data.split(",");
-//         userCommands = newCommand[0];
-//         userInput = newCommand[1];
-//         runLiri();
-//     })
+// ------------------------------------------------------------------
 
-// }
+// working code for do what it says 
+function doIt() {
+    console.log("Do it");
+    fs.readFile("random.txt", "utf8", function(err, data) {
+        var newCommand = data.split(",");
+        userCommands = newCommand[0];
+        userInput = newCommand[1];
+        runLiri();
+    })
 
-// runLiri();
+}
+
+runLiri();
